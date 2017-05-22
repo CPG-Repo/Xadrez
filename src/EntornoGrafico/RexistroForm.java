@@ -8,8 +8,6 @@ package EntornoGrafico;
 import Clases_Xogador.ListaXogadores;
 import Clases_Xogador.Xogador;
 import Excepcions.UserException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**

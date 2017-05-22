@@ -5,26 +5,29 @@
  */
 package EntornoGrafico;
 
-import javax.swing.JButton;
+import Xogo.Xogo;
+import java.awt.Color;
 
 /**
  *
  * @author Carlos
  */
-public class Taboleiro extends javax.swing.JFrame {
+public class TaboleiroGrafico extends javax.swing.JFrame {
     Boton[][] botons= new Boton[8][8];
     /**
      * Creates new form Taboleiro
      */
-    public Taboleiro() {
+    public TaboleiroGrafico() {
         initComponents();
         this.encherBotons();
+        this.pintarBotons();
+        this.refrescar();
     }
     
     public void encherBotons(){
         for(int c=0; c<botons.length; c++){
             for(int f=0;f<botons.length;f++){
-                botons[c][f]= new Boton(75*c,75*f,80,80);
+                botons[c][f]= new Boton(75*c,75*f,75,75);
                 botons[c][f].setName(c, f);
                 PanelTab.add(botons[c][f]);
                 
@@ -33,6 +36,36 @@ public class Taboleiro extends javax.swing.JFrame {
         }
     }
     
+    private void pintarBotons(){
+        int x,y;
+        for(x=0;x<botons.length;x++){
+            for(y=0;y<botons.length;y++){
+                if(y%2==0 && x%2==0 || y%2!=0 && x%2!=0){
+                    botons[x][y].setBackground(Color.BLACK);
+                }else{
+                    botons[x][y].setBackground(Color.WHITE);
+                }
+            }
+        }
+    }
+    
+    //Proba
+    public void refrescar(){
+        int x,y;
+        for(x=0;x<botons.length;x++){
+            for(y=0;y<botons.length;y++){
+                try{
+                    if(Xogo.tab.get(x, y).getPropiedadeDe()==Xogo.getXog1())
+                        botons[x][y].setIcon(Xogo.tab.get(x, y).getIconaxog1());
+                    else if(Xogo.tab.get(x, y).getPropiedadeDe()==Xogo.getXog2())
+                        botons[x][y].setIcon(Xogo.tab.get(x, y).getIconaxog2());
+                }catch(NullPointerException e){
+                    
+                }
+            }
+        }
+    }
+    //Proba
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,20 +132,21 @@ public class Taboleiro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Taboleiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaboleiroGrafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Taboleiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaboleiroGrafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Taboleiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaboleiroGrafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Taboleiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaboleiroGrafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Taboleiro().setVisible(true);
+                new TaboleiroGrafico().setVisible(true);
             }
         });
     }

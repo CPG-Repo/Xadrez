@@ -7,7 +7,6 @@ package Xogo;
 
 import Clases_Peza.Peza;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  *

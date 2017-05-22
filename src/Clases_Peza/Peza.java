@@ -24,35 +24,40 @@ public class Peza {
     private int limitacionDiagonal;
     private ImageIcon iconaxog1; 
     private ImageIcon iconaxog2;
+
     
-    public Peza(TipoPeza quePeza){
+    public Peza(TipoPeza quePeza,String xogador){
         switch(quePeza){
             case PEON:
                 this.direccionMovemento=Movemento.VERTICAL_DIAGONAL;
                 this.limitacionDiagonal=1;
                 this.limitacionVertical=1;
                 this.tipo=quePeza;
-                this.iconaxog1=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
-                this.iconaxog2=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
+                this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\PeonBranco.png");
+                this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\PeonNegro.png");
+                this.propiedadeDe=xogador;
                 break;
                 
             case TORRE:
                 this.direccionMovemento= Movemento.VERTICAL_HORIZONTAL;
                 this.tipo=quePeza;
-                this.iconaxog1=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
-                this.iconaxog2=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
+                this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\TorreBranca.png");
+                this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\TorreNegra.png");
+                this.propiedadeDe=xogador;
                 break;
             case ALFIL:
                 this.direccionMovemento= Movemento.DIAGONAL;
                 this.tipo=quePeza;
-                this.iconaxog1=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
-                this.iconaxog2=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
+                this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\AlfilBranco.png");
+                this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\AlfilNegro.png");
+                this.propiedadeDe=xogador;
                 break;
             case CABALO:
                 this.direccionMovemento= Movemento.EN_L;
                 this.tipo=quePeza;
-                this.iconaxog1=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
-                this.iconaxog2=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
+                this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\CabaloBranco.png");
+                this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\CabaloNegro.png");
+                this.propiedadeDe=xogador;
                 break;
             case REI:
                 this.direccionMovemento= Movemento.VERTICAL_HORIZONTA_DIAGONAL;
@@ -60,14 +65,16 @@ public class Peza {
                 this.limitacionHorizontal=1;
                 this.limitacionVertical=1;
                 this.tipo=quePeza;
-                this.iconaxog1=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
-                this.iconaxog2=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
+                this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\ReiBranco.png");
+                this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\ReiNegro.png");
+                this.propiedadeDe=xogador;
                 break;
             case RAIÑA:
                 this.direccionMovemento= Movemento.VERTICAL_HORIZONTA_DIAGONAL;
                 this.tipo=quePeza;
-                this.iconaxog1=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
-                this.iconaxog2=new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png");
+                this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\RaiñaBranca.png");
+                this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\RaiñaNegra.png");
+                this.propiedadeDe=xogador;
                 break;
         }
     }
@@ -127,4 +134,13 @@ public class Peza {
     public void setLimitacionDiagonal(int limitacionDiagonal) {
         this.limitacionDiagonal = limitacionDiagonal;
     }
+    
+    public ImageIcon getIconaxog1() {
+        return iconaxog1;
+    }
+
+    public ImageIcon getIconaxog2() {
+        return iconaxog2;
+    }
+    
 }

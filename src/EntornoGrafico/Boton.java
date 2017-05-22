@@ -27,6 +27,6 @@ public class Boton extends JButton implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        super.setBackground(Color.GREEN);
+        
     }
 }

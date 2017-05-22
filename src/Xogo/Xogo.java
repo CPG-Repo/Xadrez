@@ -7,20 +7,20 @@ package Xogo;
 
 import Clases_Peza.Peza;
 import Clases_Peza.TipoPeza;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  *
  * @author Carlos
  */
 public class Xogo {
-    Taboleiro tab= new Taboleiro();
-    String xog1,xog2;
+    public static Taboleiro tab= new Taboleiro();
+    private static String xog1,xog2;
     
     
-    public Xogo(){
+    public Xogo(String xogador1, String xogador2){
+        this.xog1=xogador1;
+        this.xog2=xogador2;
     }
     
     public void iniciarXogo(){
@@ -30,34 +30,34 @@ public class Xogo {
     
     private void encherTaboleiro(){
         Integer x, y;
-        for(x=0;x<tab.taboleiro.size();x++){
-            tab.put(x,y=1 , new Peza(TipoPeza.PEON));
-            tab.put(x,y=6 , new Peza(TipoPeza.PEON));
+        for(x=0;x<8;x++){
+            tab.put(x,y=1 , new Peza(TipoPeza.PEON,xog1));
+            tab.put(x,y=6 , new Peza(TipoPeza.PEON,xog2));
         }
         
-        for(x=0;x<tab.taboleiro.size();x++){
+        for(x=0;x<8;x++){
             if(x==0|x==7){
-                tab.put(x, y=0, new Peza(TipoPeza.TORRE));
-                tab.put(x, y=7, new Peza(TipoPeza.TORRE));     
+                tab.put(x, y=0, new Peza(TipoPeza.TORRE,xog1));
+                tab.put(x, y=7, new Peza(TipoPeza.TORRE,xog2));     
             }else if(x==1|x==6){
-                tab.put(x, y=0, new Peza(TipoPeza.CABALO));
-                tab.put(x, y=7, new Peza(TipoPeza.CABALO));   
+                tab.put(x, y=0, new Peza(TipoPeza.CABALO,xog1));
+                tab.put(x, y=7, new Peza(TipoPeza.CABALO,xog2));   
             }else if(x==2|x==5){
-                tab.put(x, y=0, new Peza(TipoPeza.ALFIL));
-                tab.put(x, y=7, new Peza(TipoPeza.ALFIL));   
+                tab.put(x, y=0, new Peza(TipoPeza.ALFIL,xog1));
+                tab.put(x, y=7, new Peza(TipoPeza.ALFIL,xog2));   
             }else if(x==3){
-                tab.put(x, y=0, new Peza(TipoPeza.REI));
-                tab.put(x, y=7, new Peza(TipoPeza.RAIÑA)); 
+                tab.put(x, y=0, new Peza(TipoPeza.REI,xog1));
+                tab.put(x, y=7, new Peza(TipoPeza.RAIÑA,xog2)); 
             }else if(x==4){
-                tab.put(x, y=0, new Peza(TipoPeza.RAIÑA));
-                tab.put(x, y=7, new Peza(TipoPeza.REI)); 
+                tab.put(x, y=0, new Peza(TipoPeza.RAIÑA,xog1));
+                tab.put(x, y=7, new Peza(TipoPeza.REI,xog2)); 
             }
         }
     }
     
     private void asignarXogador1(){
         int x,y;
-        for(x=0;x<tab.taboleiro.size();x++){
+        for(x=0;x<8;x++){
             for(y=0;y==1;y++){
                 tab.get(x, y).setPropiedadeDe(xog1);
             }
@@ -66,7 +66,7 @@ public class Xogo {
     
     private void asignarXogador2(){
         int x,y;
-        for(x=0;x<tab.taboleiro.size();x++){
+        for(x=0;x<8;x++){
             for(y=6;y==7;y++){
                 tab.get(x, y).setPropiedadeDe(xog2);
             }
@@ -76,6 +76,14 @@ public class Xogo {
     public Peza getFicha(Integer x,Integer y){
         Peza ficha=tab.get(x, y);
         return ficha;
+    }
+    
+    public static String getXog1() {
+        return xog1;
+    }
+
+    public static String getXog2() {
+        return xog2;
     }
     
     

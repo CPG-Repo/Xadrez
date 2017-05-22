@@ -7,6 +7,7 @@ package xadrez;
 
 
 
+import EntornoGrafico.TaboleiroGrafico;
 import Excepcions.UserException;
 import Xogo.Xogo;
 
@@ -23,9 +24,12 @@ public class Xadrez {
      * @throws Excepcions.UserException
      */
     public static void main(String[] args) throws UserException {
-        Xogo xog=new Xogo();
+        Xogo xog=new Xogo("pepe","carmela");
         xog.iniciarXogo();
+        System.out.println(xog.getFicha(7,7).getTipo());
         System.out.println(xog.getFicha(1,7 ).getTipo());
+        TaboleiroGrafico tabG= new TaboleiroGrafico();
+        tabG.setVisible(true);
 
     }
 }

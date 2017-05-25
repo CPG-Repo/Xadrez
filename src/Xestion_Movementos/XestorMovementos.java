@@ -6,6 +6,7 @@
 package Xestion_Movementos;
 
 import Clases_Peza.Peza;
+import Xogo.Taboleiro;
 import java.util.ArrayList;
 
 /**
@@ -13,24 +14,8 @@ import java.util.ArrayList;
  * @author Carlos
  */
 public class XestorMovementos {
-    ArrayList<Peza>[][] taboleiro = new ArrayList[8][8];
-    ArrayList<Peza>[][] posiblesMovementos = new ArrayList[8][8];
+    Taboleiro tabCopia= new Taboleiro();
+    Taboleiro tabMovementos= new Taboleiro();
     
-    public XestorMovementos(Peza[][] tab, int pezaX, int pezaY, Movemento direccion){
-        Peza ficha;
-        ficha=taboleiro[pezaX][pezaY].get(pezaX);
-        taboleiro[1][1].getClass();
-    }
-    
-    public ArrayList[][] movementosPosibles(ArrayList[][] tab, int pezaX, int pezaY){
-        return null;
-    }
-    
-    private void Horizontal(int pezaX,int pezaY){
-        int coordX, coordY;
-        boolean pezaNoCamiño=false;
-        for(coordX=pezaX;coordX<0;pezaX++){
-            
-        }
-    }
+   
 }

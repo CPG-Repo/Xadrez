@@ -13,7 +13,10 @@ import java.awt.Color;
  * @author Carlos
  */
 public class TaboleiroGrafico extends javax.swing.JFrame {
-    Boton[][] botons= new Boton[8][8];
+    private static Boton[][] botons= new Boton[8][8];
+    private int aComerX,aComerY,queComeX,queComeY;
+
+    
     /**
      * Creates new form Taboleiro
      */
@@ -27,21 +30,64 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
     public void encherBotons(){
         for(int c=0; c<botons.length; c++){
             for(int f=0;f<botons.length;f++){
-                botons[c][f]= new Boton(75*c,75*f,75,75);
+                botons[c][f]= new Boton(c,f,90,90);
                 botons[c][f].setName(c, f);
                 PanelTab.add(botons[c][f]);
                 
+                botons[c][f].addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        botonSeleccionar(evt);
+                    }
+                });
             }
             
         }
     }
+    
+    private void botonSeleccionar(java.awt.event.ActionEvent evt) {                                         
+        Boton boton=(Boton) evt.getSource();
+        
+        this.resetearBotonsSeleccionados();
+        
+        if(this.comprobarSeContenPeza(boton)){
+            boton.mudarEstadoClickado();
+
+            if(boton.isClickado()){        
+                boton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+            }
+        }
+    }       
+    
+    
+    private void resetearBotonsSeleccionados(){
+        for(int x=0;x<this.botons.length;x++){
+            for(int y=0;y<botons.length;y++){
+                if(botons[x][y].isClickado()){
+                    botons[x][y].resetearEstado();
+                    botons[x][y].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150), 1));
+                }
+            }
+        }
+    }
+    
+    private boolean comprobarSeContenPeza(Boton bot){
+        try{
+            if(Xogo.tab.get(bot.getBotonX(), bot.getBotonY()).equals(null)){
+                System.out.println("non peza");
+            }
+        }catch(NullPointerException e){
+            return false;
+        }
+        return true;
+    }
+    
     
     private void pintarBotons(){
         int x,y;
         for(x=0;x<botons.length;x++){
             for(y=0;y<botons.length;y++){
                 if(y%2==0 && x%2==0 || y%2!=0 && x%2!=0){
-                    botons[x][y].setBackground(Color.BLACK);
+                    botons[x][y].setBackground(Color.GRAY);
                 }else{
                     botons[x][y].setBackground(Color.WHITE);
                 }
@@ -65,6 +111,41 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
             }
         }
     }
+    
+    //GETTERS AND SETTERS
+    
+    public int getaComerX() {
+        return aComerX;
+    }
+
+    public void setaComerX(int aComerX) {
+        this.aComerX = aComerX;
+    }
+
+    public int getaComerY() {
+        return aComerY;
+    }
+
+    public void setaComerY(int aComerY) {
+        this.aComerY = aComerY;
+    }
+
+    public int getQueComeX() {
+        return queComeX;
+    }
+
+    public void setQueComeX(int queComeX) {
+        this.queComeX = queComeX;
+    }
+
+    public int getQueComeY() {
+        return queComeY;
+    }
+
+    public void setQueComeY(int queComeY) {
+        this.queComeY = queComeY;
+    }
+   
     //Proba
 
     /**
@@ -81,8 +162,13 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Carlos\\Desktop\\Pezas Xadrez\\AlfilBranco.png")); // NOI18N
         jButton1.setText("jButton1");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelTabLayout = new javax.swing.GroupLayout(PanelTab);
         PanelTab.setLayout(PanelTabLayout);
@@ -114,6 +200,10 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

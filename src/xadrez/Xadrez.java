@@ -19,6 +19,11 @@ import Xogo.Xogo;
  * @author Carlos
  */
 public class Xadrez {
+    private boolean quenda;
+
+    public boolean isQuenda() {
+        return quenda;
+    }
     /**
      * @param args the command line arguments
      * @throws Excepcions.UserException

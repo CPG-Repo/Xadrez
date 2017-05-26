@@ -6,6 +6,7 @@
 package EntornoGrafico;
 
 import java.awt.Color;
+import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -14,19 +15,43 @@ import javax.swing.JButton;
  *
  * @author Carlos
  */
-public class Boton extends JButton implements ActionListener{
+public class Boton extends JButton{
+    private boolean clickado=false;
+    private int botonX,botonY;
+
+    
     
     public Boton(int x,int y, int alto, int ancho){
-        this.setBounds(x, y, alto, ancho);
-        this.addActionListener(this);
+        this.setBounds(x*90, y*90, alto, ancho);
+        this.botonX=x;
+        this.botonY=y;
     }
     
     public void setName(int x, int y){
         this.setText((x+1)+"-"+(y+1));
     }
+    
+    public void mudarEstadoClickado(){
+        if(this.clickado==true){
+            this.clickado=false;
+        }else if(this.clickado==false){
+            this.clickado=true;
+        }
+    }
+    
+    public void resetearEstado(){
+        this.clickado=false;
+    }
+    
+    public int getBotonX() {
+        return botonX;
+    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
+    public int getBotonY() {
+        return botonY;
+    }
+
+    public boolean isClickado() {
+        return clickado;
     }
 }

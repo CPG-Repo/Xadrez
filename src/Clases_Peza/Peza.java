@@ -19,9 +19,9 @@ public class Peza {
     private TipoPeza tipo;
     private String propiedadeDe;
     private Movemento direccionMovemento;
-    private int limitacionVertical;
-    private int limitacionHorizontal;
-    private int limitacionDiagonal;
+    private int limitacionVertical=0;
+    private int limitacionHorizontal=0;
+    private int limitacionDiagonal=0;
     private ImageIcon iconaxog1; 
     private ImageIcon iconaxog2;
 
@@ -32,6 +32,7 @@ public class Peza {
                 this.direccionMovemento=Movemento.VERTICAL_DIAGONAL;
                 this.limitacionDiagonal=1;
                 this.limitacionVertical=1;
+                this.limitacionHorizontal=1;
                 this.tipo=quePeza;
                 this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\PeonBranco.png");
                 this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\PeonNegro.png");

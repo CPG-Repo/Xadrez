@@ -41,4 +41,16 @@ public class Taboleiro {
     public void clear() {
         taboleiro.clear();
     }
+    
+    public boolean haiPeza(Integer x, Integer y){
+        try{
+            if(this.get(x, y).getClass()==Peza.class){
+                return true;
+            }else {
+                return false;
+            }
+        }catch(NullPointerException ex){
+            return false;
+        }
+    }
 }

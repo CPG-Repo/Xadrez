@@ -5,6 +5,7 @@
  */
 package EntornoGrafico;
 
+import Xestion_Movementos.XestorMovementos;
 import Xogo.Xogo;
 import java.awt.Color;
 
@@ -28,44 +29,44 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
     }
     
     public void encherBotons(){
-        for(int c=0; c<botons.length; c++){
-            for(int f=0;f<botons.length;f++){
-                botons[c][f]= new Boton(c,f,90,90);
-                botons[c][f].setName(c, f);
-                PanelTab.add(botons[c][f]);
-                
-                botons[c][f].addActionListener(new java.awt.event.ActionListener() {
+        for(int x=0; x<botons.length; x++){
+            for(int y=0;y<botons.length;y++){
+                botons[x][y]= new Boton(x,y,90,90);
+                botons[x][y].setName(x, y);
+                PanelTab.add(botons[x][y]);
+                botons[x][y].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50), 2));
+                botons[x][y].addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         botonSeleccionar(evt);
+                        refrescar();
                     }
                 });
             }
-            
         }
     }
     
     private void botonSeleccionar(java.awt.event.ActionEvent evt) {                                         
         Boton boton=(Boton) evt.getSource();
-        
-        this.resetearBotonsSeleccionados();
-        
+        resetearBotonsSeleccionados();
         if(this.comprobarSeContenPeza(boton)){
             boton.mudarEstadoClickado();
-
-            if(boton.isClickado()){        
-                boton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+            
+            if(boton.isClickado()){      
+                boton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 3));
+                pintarMovementosPosibles(boton.getBotonX(),boton.getBotonY());
+            }else if(!boton.isClickado()){
+               
             }
         }
     }       
     
     
     private void resetearBotonsSeleccionados(){
-        for(int x=0;x<this.botons.length;x++){
-            for(int y=0;y<botons.length;y++){
-                if(botons[x][y].isClickado()){
-                    botons[x][y].resetearEstado();
-                    botons[x][y].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(150, 150, 150), 1));
-                }
+        for(int x=0;x<botons.length;x++){
+            for(int y=0;y<botons.length;y++){           
+                botons[x][y].resetearEstado();
+                botons[x][y].setPosibleMov(false);
+                botons[x][y].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 50, 50), 2));
             }
         }
     }
@@ -95,7 +96,24 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
         }
     }
     
-    //Proba
+    //Metodo en Probas
+    private void pintarMovementosPosibles(int botonX,int botonY){
+        int x,y;
+        int[][] tabMov= new int[8][8];
+        XestorMovementos xestor= new XestorMovementos();
+        tabMov=xestor.movementosPosibles(Xogo.tab, botonX, botonY);
+        
+        for(x=0;x<tabMov.length;x++){
+            for(y=0;y<tabMov.length;y++){
+                if(tabMov[x][y]==1 || tabMov[x][y]==2){
+                    botons[x][y].setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+                    botons[x][y].setPosibleMov(true);
+                }
+            }
+        }
+    }
+    
+   
     public void refrescar(){
         int x,y;
         for(x=0;x<botons.length;x++){

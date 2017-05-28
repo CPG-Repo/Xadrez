@@ -17,6 +17,9 @@ import javax.swing.JButton;
  */
 public class Boton extends JButton{
     private boolean clickado=false;
+    private boolean posibleMov=false;
+
+    
     private int botonX,botonY;
 
     
@@ -53,5 +56,13 @@ public class Boton extends JButton{
 
     public boolean isClickado() {
         return clickado;
+    }
+    
+    public boolean isPosibleMov() {
+        return posibleMov;
+    }
+
+    public void setPosibleMov(boolean posibleMov) {
+        this.posibleMov = posibleMov;
     }
 }

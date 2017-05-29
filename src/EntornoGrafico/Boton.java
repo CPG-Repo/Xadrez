@@ -5,10 +5,6 @@
  */
 package EntornoGrafico;
 
-import java.awt.Color;
-import java.awt.Event;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
@@ -44,6 +40,7 @@ public class Boton extends JButton{
     
     public void resetearEstado(){
         this.clickado=false;
+        this.posibleMov=false;
     }
     
     public int getBotonX() {

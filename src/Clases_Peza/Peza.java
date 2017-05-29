@@ -24,6 +24,8 @@ public class Peza {
     private int limitacionDiagonal=0;
     private ImageIcon iconaxog1; 
     private ImageIcon iconaxog2;
+    private int movementosRealizados=0;
+
 
     
     public Peza(TipoPeza quePeza,String xogador){
@@ -143,5 +145,14 @@ public class Peza {
     public ImageIcon getIconaxog2() {
         return iconaxog2;
     }
+    
+    public int getMovementosRealizados() {
+        return movementosRealizados;
+    }
+
+    public void setMovementosRealizados(int movementosRealizados) {
+        this.movementosRealizados = movementosRealizados;
+    }
+
     
 }

@@ -9,7 +9,6 @@ import Clases_Peza.Peza;
 import Clases_Peza.TipoPeza;
 import Xogo.Taboleiro;
 import Xogo.Xogo;
-import java.util.ArrayList;
 
 /**
  *
@@ -63,14 +62,14 @@ public class XestorMovementos {
         int limitacionYneg=this.limitacionVerticalNegativa(e);
         
         for(y=fichaY; y<limitacionYpos ;y++){
-            this.asignarPeza(fichaX,y , e);
+            this.asignarMovPosible(fichaX,y , e);
             if(this.tabMovementosPosibles[fichaX][y]==2 || this.tabMovementosPosibles[fichaX][y]==3){
                 break;
             }
         }
         
         for(y=fichaY; y>=limitacionYneg ;y--){
-            this.asignarPeza(fichaX,y , e);
+            this.asignarMovPosible(fichaX,y , e);
             if(this.tabMovementosPosibles[fichaX][y]==2 || this.tabMovementosPosibles[fichaX][y]==3){
                 break;
             }
@@ -83,14 +82,14 @@ public class XestorMovementos {
         int limitacionXneg=this.limitacionHorizontalNegativa(e);
        
         for(x=fichaX; x<limitacionXpos ;x++){
-            this.asignarPeza(x, fichaY, e);
+            this.asignarMovPosible(x, fichaY, e);
             if(this.tabMovementosPosibles[x][fichaY]==2 || this.tabMovementosPosibles[x][fichaY]==3){
                 break;
             }
         }
         
         for(x=fichaX;  x>=limitacionXneg ;x--){
-            this.asignarPeza(x, fichaY, e);
+            this.asignarMovPosible(x, fichaY, e);
             if(this.tabMovementosPosibles[x][fichaY]==2 || this.tabMovementosPosibles[x][fichaY]==3){
                 break;
             }
@@ -106,7 +105,7 @@ public class XestorMovementos {
 
         //Sentido x+ y+
         for(x=fichaX, y=fichaY;x<limitacionXpos && y<limitacionYpos;x++, y++){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
             if(this.tabMovementosPosibles[x][y]==2 || this.tabMovementosPosibles[x][y]==3){
                 break;
             }
@@ -114,7 +113,7 @@ public class XestorMovementos {
         
         //Sentido x+ y-
         for(x=fichaX, y=fichaY; x<limitacionXpos && y>=limitacionYneg;x++, y--){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
             if(this.tabMovementosPosibles[x][y]==2 || this.tabMovementosPosibles[x][y]==3){
                 break;
             }
@@ -122,7 +121,7 @@ public class XestorMovementos {
         
         //Sentido x- y+
         for(x=fichaX, y=fichaY;x>=limitacionXneg && y<limitacionYpos;x--, y++){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
             if(this.tabMovementosPosibles[x][y]==2 || this.tabMovementosPosibles[x][y]==3){
                 break;
             }
@@ -130,7 +129,7 @@ public class XestorMovementos {
         
         //Sentido x- y-
         for(x=fichaX, y=fichaY;x>=limitacionXneg && y>=limitacionYneg;x--, y--){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
             if(this.tabMovementosPosibles[x][y]==2 || this.tabMovementosPosibles[x][y]==3){
                 break;
             }
@@ -142,43 +141,43 @@ public class XestorMovementos {
 
         x=fichaX+2; y=fichaY+1;
         if(x>=0 && x<8 && y>=0 && y<8){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
         }
         
         x=fichaX+1; y=fichaY+2;
         if(x>=0 && x<8 && y>=0 && y<8){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
         }
         
         x=fichaX+2; y=fichaY-1;
         if(x>=0 && x<8 && y>=0 && y<8){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
         }
         
         x=fichaX+1; y=fichaY-2;
         if(x>=0 && x<8 && y>=0 && y<8){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
         }
         
         
         x=fichaX-2; y=fichaY+1;
         if(x>=0 && x<8 && y>=0 && y<8){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
         }
         
         x=fichaX-1; y=fichaY+2;
         if(x>=0 && x<8 && y>=0 && y<8){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
         }
         
         x=fichaX-2; y=fichaY-1;
         if(x>=0 && x<8 && y>=0 && y<8){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
         }
         
         x=fichaX-1; y=fichaY-2;
         if(x>=0 && x<8 && y>=0 && y<8){
-            this.asignarPeza(x, y, e);
+            this.asignarMovPosible(x, y, e);
         }
     }
     
@@ -190,7 +189,7 @@ public class XestorMovementos {
          }
     }
     
-    private void asignarPeza(int x, int y, Peza e){
+    private void asignarMovPosible(int x, int y, Peza e){
         if(this.tabCopia.haiPeza(x, y)){
             if(this.tabCopia.get(x, y).getPropiedadeDe().equals(e.getPropiedadeDe())){
                 this.tabMovementosPosibles[x][y]=3;//CAMBIALO POR UN 0

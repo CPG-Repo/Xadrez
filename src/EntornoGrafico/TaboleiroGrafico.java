@@ -47,17 +47,31 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
     
     private void botonSeleccionar(java.awt.event.ActionEvent evt) {                                         
         Boton boton=(Boton) evt.getSource();
-        resetearBotonsSeleccionados();
+        if(boton.isPosibleMov()==false){
+            this.resetearBotonsSeleccionados();
+            this.resetearVariables();
+        }
         if(this.comprobarSeContenPeza(boton)){
             boton.mudarEstadoClickado();
             
             if(boton.isClickado()){      
                 boton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 3));
                 pintarMovementosPosibles(boton.getBotonX(),boton.getBotonY());
-            }else if(!boton.isClickado()){
-               
+                this.queComeX=boton.getBotonX();
+                this.queComeY=boton.getBotonY();
             }
         }
+        
+        if(boton.isPosibleMov()){
+            this.aComerX=boton.getBotonX();
+            this.aComerY=boton.getBotonY();
+        }
+        
+        //Probas
+        if(this.getaComerX()!=0 || this.getaComerY()!=0 || this.getQueComeX()!=0 || this.getQueComeY()!=0){
+            System.out.println(this.getaComerX()+" "+this.getaComerY()+" "+this.getQueComeX()+" "+this.getQueComeY());
+        }
+        
     }       
     
     
@@ -95,8 +109,7 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
             }
         }
     }
-    
-    //Metodo en Probas
+
     private void pintarMovementosPosibles(int botonX,int botonY){
         int x,y;
         int[][] tabMov= new int[8][8];
@@ -112,7 +125,13 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
             }
         }
     }
-    
+   
+    private void resetearVariables(){
+        this.aComerX=0;
+        this.aComerY=0;
+        this.queComeX=0;
+        this.queComeY=0;
+    }
    
     public void refrescar(){
         int x,y;

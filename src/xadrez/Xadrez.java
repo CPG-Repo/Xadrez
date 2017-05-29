@@ -19,10 +19,19 @@ import Xogo.Xogo;
  * @author Carlos
  */
 public class Xadrez {
-    private boolean quenda;
-
-    public boolean isQuenda() {
-        return quenda;
+    private String turno=Xogo.getXog1();
+    
+    
+    public void cambioTurno(){
+        if(turno.equals(Xogo.getXog1())){
+            turno=Xogo.getXog2();
+        }else{
+            turno=Xogo.getXog1();
+        }
+    }
+    
+    public String isQuenda() {
+        return turno;
     }
     /**
      * @param args the command line arguments
@@ -31,10 +40,11 @@ public class Xadrez {
     public static void main(String[] args) throws UserException {
         Xogo xog=new Xogo("pepe","carmela");
         xog.iniciarXogo();
-        System.out.println(xog.getFicha(7,7).getTipo());
-        System.out.println(xog.getFicha(1,7 ).getTipo());
         TaboleiroGrafico tabG= new TaboleiroGrafico();
         tabG.setVisible(true);
+        
+        
+        
 
     }
 }

@@ -12,7 +12,7 @@ import java.util.HashMap;
  *
  * @author Carlos
  */
-public class Taboleiro {
+public class Taboleiro  {
     HashMap<Integer,HashMap<Integer,Peza>> taboleiro = new HashMap<Integer,HashMap<Integer,Peza>>(8);
     
     public Peza put(Integer x, Integer y, Peza valor) {
@@ -34,14 +34,7 @@ public class Taboleiro {
             return null;
         }
     }
-    public boolean containsKeys(Integer key1, Integer key2) {
-        return taboleiro.containsKey(key1) && taboleiro.get(key1).containsKey(key2);
-    }
 
-    public void clear() {
-        taboleiro.clear();
-    }
-    
     public boolean haiPeza(Integer x, Integer y){
         try{
             if(this.get(x, y).getClass()==Peza.class){

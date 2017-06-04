@@ -7,7 +7,8 @@ package Xogo;
 
 import Clases_Peza.Peza;
 import Clases_Peza.TipoPeza;
-
+import static Clases_Peza.TipoPeza.REI;
+import xadrez.Xadrez;
 
 /**
  *
@@ -25,8 +26,8 @@ public class Xogo {
     
     public void iniciarXogo(){
         encherTaboleiro();
-        asignarXogador1();
     }
+    
     
     private void encherTaboleiro(){
         Integer x, y;
@@ -54,23 +55,23 @@ public class Xogo {
             }
         }
     }
-    
-    private void asignarXogador1(){
-        int x,y;
-        for(x=0;x<8;x++){
-            for(y=0;y==1;y++){
-                tab.get(x, y).setPropiedadeDe(xog1);
+
+    public static void efectuarMovemento(int aMoverX, int aMoverY, int ondeSeMoveX, int ondeSeMoveY){
+        Peza p= Xogo.tab.get(aMoverX, aMoverY);
+        
+        if(p.getPropiedadeDe().equalsIgnoreCase(Xadrez.getTurno())){
+            
+            if(Xogo.tab.haiPeza(ondeSeMoveX, ondeSeMoveY) && Xogo.tab.get(ondeSeMoveX, ondeSeMoveY).getTipo()==REI){
+                Xogo.tab.put(ondeSeMoveX, ondeSeMoveY, p);
+                Xogo.tab.put(aMoverX, aMoverY, null);
+                Xadrez.finDoXogo();
+            }else{
+                Xogo.tab.put(ondeSeMoveX, ondeSeMoveY, p);
+                Xogo.tab.put(aMoverX, aMoverY, null);   
+                Xadrez.cambioTurno();
             }
         }
-    }
-    
-    private void asignarXogador2(){
-        int x,y;
-        for(x=0;x<8;x++){
-            for(y=6;y==7;y++){
-                tab.get(x, y).setPropiedadeDe(xog2);
-            }
-        }
+        
     }
     
     public Peza getFicha(Integer x,Integer y){
@@ -86,32 +87,4 @@ public class Xogo {
         return xog2;
     }
     
-    
-    
-    
-//    public void getTaboleiro(){
-//        int x;
-//        int y;
-//        System.out.println("     0 1 2 3 4 5 6 7 8 9");
-//        System.out.println("     | | | | | | | | | |");
-//        for(x=0;x<taboleiro.length;x++){
-//            System.out.print(x+"-- ");
-//            System.out.print("|");
-//            for(y=0;y<taboleiro.length;y++){
-//                System.out.print(taboleiro[x][y]+"|");
-//            }
-//            System.out.println("");
-//        }
-//    }
-    
-//      public String toString(){
-//      String result = "";
-//      for(int i = 0; i < taboleiro.size(); i++){
-//          for(int j = 0; j < taboleiro.get(i).size(); j++){
-//              result += taboleiro.get(i).get(j);
-//          }
-//          System.out.println("x");
-//      }
-//      return result;
-//  }
 }

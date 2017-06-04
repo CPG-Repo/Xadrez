@@ -5,7 +5,6 @@
  */
 package Clases_Peza;
 
-import Xestion_Movementos.Movemento;
 import javax.swing.ImageIcon;
 
 
@@ -15,23 +14,20 @@ import javax.swing.ImageIcon;
  */
 public class Peza {
 
-    private boolean estado=true;
     private TipoPeza tipo;
     private String propiedadeDe;
-    private Movemento direccionMovemento;
     private int limitacionVertical=0;
     private int limitacionHorizontal=0;
     private int limitacionDiagonal=0;
     private ImageIcon iconaxog1; 
     private ImageIcon iconaxog2;
-    private int movementosRealizados=0;
+
 
 
     
     public Peza(TipoPeza quePeza,String xogador){
         switch(quePeza){
             case PEON:
-                this.direccionMovemento=Movemento.VERTICAL_DIAGONAL;
                 this.limitacionDiagonal=1;
                 this.limitacionVertical=1;
                 this.limitacionHorizontal=1;
@@ -42,28 +38,24 @@ public class Peza {
                 break;
                 
             case TORRE:
-                this.direccionMovemento= Movemento.VERTICAL_HORIZONTAL;
                 this.tipo=quePeza;
                 this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\TorreBranca.png");
                 this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\TorreNegra.png");
                 this.propiedadeDe=xogador;
                 break;
             case ALFIL:
-                this.direccionMovemento= Movemento.DIAGONAL;
                 this.tipo=quePeza;
                 this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\AlfilBranco.png");
                 this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\AlfilNegro.png");
                 this.propiedadeDe=xogador;
                 break;
             case CABALO:
-                this.direccionMovemento= Movemento.EN_L;
                 this.tipo=quePeza;
                 this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\CabaloBranco.png");
                 this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\CabaloNegro.png");
                 this.propiedadeDe=xogador;
                 break;
             case REI:
-                this.direccionMovemento= Movemento.VERTICAL_HORIZONTA_DIAGONAL;
                 this.limitacionDiagonal=1;
                 this.limitacionHorizontal=1;
                 this.limitacionVertical=1;
@@ -73,21 +65,12 @@ public class Peza {
                 this.propiedadeDe=xogador;
                 break;
             case RAIÑA:
-                this.direccionMovemento= Movemento.VERTICAL_HORIZONTA_DIAGONAL;
                 this.tipo=quePeza;
                 this.iconaxog1=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\RaiñaBranca.png");
                 this.iconaxog2=new javax.swing.ImageIcon(".\\resources\\Pezas Xadrez\\RaiñaNegra.png");
                 this.propiedadeDe=xogador;
                 break;
         }
-    }
-    
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
     }
 
     public TipoPeza getTipo() {
@@ -104,14 +87,6 @@ public class Peza {
 
     public void setPropiedadeDe(String propiedadeDe) {
         this.propiedadeDe = propiedadeDe;
-    }
-
-    public Movemento getDireccionMovemento() {
-        return direccionMovemento;
-    }
-
-    public void setDireccionMovemento(Movemento direccionMovemento) {
-        this.direccionMovemento = direccionMovemento;
     }
 
     public int getLimitacionVertical() {
@@ -144,15 +119,5 @@ public class Peza {
 
     public ImageIcon getIconaxog2() {
         return iconaxog2;
-    }
-    
-    public int getMovementosRealizados() {
-        return movementosRealizados;
-    }
-
-    public void setMovementosRealizados(int movementosRealizados) {
-        this.movementosRealizados = movementosRealizados;
-    }
-
-    
+    } 
 }

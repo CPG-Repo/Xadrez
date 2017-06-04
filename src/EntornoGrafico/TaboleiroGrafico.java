@@ -8,6 +8,8 @@ package EntornoGrafico;
 import Xestion_Movementos.XestorMovementos;
 import Xogo.Xogo;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import xadrez.Xadrez;
 
 /**
  *
@@ -15,7 +17,7 @@ import java.awt.Color;
  */
 public class TaboleiroGrafico extends javax.swing.JFrame {
     private static Boton[][] botons= new Boton[8][8];
-    private int aComerX,aComerY,queComeX,queComeY;
+    private int ondeSeMoveX,ondeSeMoveY,aMoverX,aMoverY;
 
     
     /**
@@ -51,27 +53,26 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
             this.resetearBotonsSeleccionados();
             this.resetearVariables();
         }
+        
+        
         if(this.comprobarSeContenPeza(boton)){
             boton.mudarEstadoClickado();
             
-            if(boton.isClickado()){      
+            if(boton.isClickado() && !boton.isPosibleMov()){      
                 boton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 3));
                 pintarMovementosPosibles(boton.getBotonX(),boton.getBotonY());
-                this.queComeX=boton.getBotonX();
-                this.queComeY=boton.getBotonY();
+                this.aMoverX=boton.getBotonX();
+                this.aMoverY=boton.getBotonY();
             }
         }
         
-        if(boton.isPosibleMov()){
-            this.aComerX=boton.getBotonX();
-            this.aComerY=boton.getBotonY();
+         if(boton.isPosibleMov()){
+            this.ondeSeMoveX=boton.getBotonX();
+            this.ondeSeMoveY=boton.getBotonY();
+            Xogo.efectuarMovemento(aMoverX, aMoverY, ondeSeMoveX, ondeSeMoveY);
+            this.resetearBotonsSeleccionados();
+            this.resetearVariables();
         }
-        
-        //Probas
-        if(this.getaComerX()!=0 || this.getaComerY()!=0 || this.getQueComeX()!=0 || this.getQueComeY()!=0){
-            System.out.println(this.getaComerX()+" "+this.getaComerY()+" "+this.getQueComeX()+" "+this.getQueComeY());
-        }
-        
     }       
     
     
@@ -127,10 +128,10 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
     }
    
     private void resetearVariables(){
-        this.aComerX=0;
-        this.aComerY=0;
-        this.queComeX=0;
-        this.queComeY=0;
+        this.ondeSeMoveX=0;
+        this.ondeSeMoveY=0;
+        this.aMoverX=0;
+        this.aMoverY=0;
     }
    
     public void refrescar(){
@@ -143,44 +144,49 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
                     else if(Xogo.tab.get(x, y).getPropiedadeDe()==Xogo.getXog2())
                         botons[x][y].setIcon(Xogo.tab.get(x, y).getIconaxog2());
                 }catch(NullPointerException e){
-                    
+                        botons[x][y].setIcon(null);
                 }
             }
         }
     }
     
+    public void mensaxeDeVitoria(){
+        this.refrescar();
+        JOptionPane.showMessageDialog(this,"O Xogador: "+Xadrez.getTurno()+ " Gañou a Partida NORABOA!!!","Aviso",JOptionPane.INFORMATION_MESSAGE );
+    }
+    
     //GETTERS AND SETTERS
     
     public int getaComerX() {
-        return aComerX;
+        return ondeSeMoveX;
     }
 
     public void setaComerX(int aComerX) {
-        this.aComerX = aComerX;
+        this.ondeSeMoveX = aComerX;
     }
 
     public int getaComerY() {
-        return aComerY;
+        return ondeSeMoveY;
     }
 
     public void setaComerY(int aComerY) {
-        this.aComerY = aComerY;
+        this.ondeSeMoveY = aComerY;
     }
 
     public int getQueComeX() {
-        return queComeX;
+        return aMoverX;
     }
 
     public void setQueComeX(int queComeX) {
-        this.queComeX = queComeX;
+        this.aMoverX = queComeX;
     }
 
     public int getQueComeY() {
-        return queComeY;
+        return aMoverY;
     }
 
     public void setQueComeY(int queComeY) {
-        this.queComeY = queComeY;
+        this.aMoverY = queComeY;
     }
    
     //Proba
@@ -195,52 +201,37 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelTab = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton1.setText("jButton1");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        setPreferredSize(new java.awt.Dimension(725, 755));
+        setResizable(false);
 
         javax.swing.GroupLayout PanelTabLayout = new javax.swing.GroupLayout(PanelTab);
         PanelTab.setLayout(PanelTabLayout);
         PanelTabLayout.setHorizontalGroup(
             PanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTabLayout.createSequentialGroup()
-                .addContainerGap(816, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(23, 23, 23))
+            .addGap(0, 892, Short.MAX_VALUE)
         );
         PanelTabLayout.setVerticalGroup(
             PanelTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTabLayout.createSequentialGroup()
-                .addContainerGap(729, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PanelTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanelTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,6 +271,5 @@ public class TaboleiroGrafico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTab;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

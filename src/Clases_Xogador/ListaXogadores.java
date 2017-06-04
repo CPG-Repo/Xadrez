@@ -35,4 +35,13 @@ public class ListaXogadores {
         }
         return false;
     }
+    
+    public static Xogador getXogador(String user){
+        for(Xogador x : ListaXogadores.rexistro){
+            if(x.getUser().equalsIgnoreCase(user)){
+                return x;
+            }
+        }
+        return null;
+    }
 }

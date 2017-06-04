@@ -32,7 +32,7 @@ public class Xogador {
             this.comprobarCaracterInicial(us)|
             this.comprobarLonxitude(us, 5)|
             this.comprobarEspazos(us)|
-            this.comprobarSiTodoLetrasOuNumeros(us)){
+            this.comprobarSeTodoLetrasOuNumeros(us)){
             
             
             return true;
@@ -102,7 +102,7 @@ public class Xogador {
             throw new UserException(3);
         }
     }
-    private boolean comprobarSiTodoLetrasOuNumeros(String us) throws UserException{
+    private boolean comprobarSeTodoLetrasOuNumeros(String us) throws UserException{
         int c;
         char[] cadea=us.toCharArray();
         for(c=0;c<cadea.length;c++){

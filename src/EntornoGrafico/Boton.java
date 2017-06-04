@@ -25,11 +25,7 @@ public class Boton extends JButton{
         this.botonX=x;
         this.botonY=y;
     }
-    
-    public void setName(int x, int y){
-        this.setText((x+1)+"-"+(y+1));
-    }
-    
+ 
     public void mudarEstadoClickado(){
         if(this.clickado==true){
             this.clickado=false;
@@ -42,6 +38,12 @@ public class Boton extends JButton{
         this.clickado=false;
         this.posibleMov=false;
     }
+    
+       
+    public void setName(int x, int y){
+        this.setText((x+1)+"-"+(y+1));
+    }
+    
     
     public int getBotonX() {
         return botonX;

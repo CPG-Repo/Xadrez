@@ -25,7 +25,6 @@ public class XestorMovementos {
         fichaX=pezaX;
         fichaY=pezaY;
         calculoMovemento(tabCopia.get(pezaX, pezaY));
-        
         tabMovementosPosibles[fichaX][fichaY]=0;
         return tabMovementosPosibles;
     }
@@ -257,29 +256,29 @@ public class XestorMovementos {
     /*
      ******************************************************
      */
-    
-    
-    
-    public static void main(String args[]) {
-        Xogo xog=new Xogo("pepe","carmela");
-        XestorMovementos xestor= new XestorMovementos();
-        xog.iniciarXogo();
-        
-        Xogo.tab.put(6, 5, new Peza(TipoPeza.REI, "carmela"));
-        xestor.movementosPosibles(Xogo.tab,6, 5);
-        
-        int x;
-        int y;
-        System.out.println("     0 1 2 3 4 5 6 7 ");
-        System.out.println("     | | | | | | | | ");
-        for(x=0;x<xestor.tabMovementosPosibles.length;x++){
-            System.out.print(x+"-- ");
-            System.out.print("|");
-            for(y=0;y<xestor.tabMovementosPosibles.length;y++){
-                System.out.print(xestor.tabMovementosPosibles[x][y]+"|");
-            }
-            System.out.println("");
-        }
-        
-    }
+//    
+//    //Comprobacion por consola
+//    
+//    public static void main(String args[]) {
+//        Xogo xog=new Xogo("pepe","carmela");
+//        XestorMovementos xestor= new XestorMovementos();
+//        xog.iniciarXogo();
+//        
+//        Xogo.tab.put(6, 5, new Peza(TipoPeza.REI, "carmela"));
+//        xestor.movementosPosibles(Xogo.tab,6, 5);
+//        
+//        int x;
+//        int y;
+//        System.out.println("     0 1 2 3 4 5 6 7 ");
+//        System.out.println("     | | | | | | | | ");
+//        for(x=0;x<xestor.tabMovementosPosibles.length;x++){
+//            System.out.print(x+"-- ");
+//            System.out.print("|");
+//            for(y=0;y<xestor.tabMovementosPosibles.length;y++){
+//                System.out.print(xestor.tabMovementosPosibles[x][y]+"|");
+//            }
+//            System.out.println("");
+//        }
+//        
+//    }
 }

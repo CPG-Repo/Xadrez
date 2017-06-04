@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author Carlos
  */
-public class RexistroForm extends javax.swing.JFrame {
+public class Rexistro extends javax.swing.JFrame {
 
     /**
      * Creates new form RexistroForm
      */
-    public RexistroForm() {
+    public Rexistro() {
         initComponents();
     }
 
@@ -37,8 +37,8 @@ public class RexistroForm extends javax.swing.JFrame {
         BotonInstruccions = new javax.swing.JButton();
         campoUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        campoContra = new javax.swing.JTextField();
-        campoRepContra = new javax.swing.JTextField();
+        campoContra = new javax.swing.JPasswordField();
+        campoRepContra = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -176,20 +176,21 @@ public class RexistroForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RexistroForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Rexistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RexistroForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Rexistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RexistroForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Rexistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RexistroForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Rexistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RexistroForm().setVisible(true);
+                new Rexistro().setVisible(true);
             }
         });
     }
